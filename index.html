@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plyora — Премиум изделия из фанеры | Латвия</title>
+    <meta name="description" content="Plyora. Летние домики, сараи, заборы и мебель из качественной березовой фанеры. Производство в Латвии. Честные цены от производителя.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .product-card { transition: all 0.2s ease; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        .section-title { font-size: 1.75rem; font-weight: 700; color: #0A3D2E; }
+        .nav-link { transition: color 0.2s; }
+        .nav-link:hover { color: #0A3D2E; }
+        .order-item { background: #F8F5F0; }
+        .file-preview { max-height: 80px; object-fit: cover; border-radius: 8px; }
+    </style>
+</head>
+<body class="bg-[#F8F5F0] text-[#0A3D2E]">
+
+    <!-- NAV -->
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+            <div class="flex items-center gap-x-3">
+                <img src="images/plyora-logo1.jpg" alt="Plyora" class="w-9 h-9 rounded-xl">
+                <div>
+                    <span class="font-bold text-2xl tracking-tight">Plyora</span>
+                    <span class="text-xs text-[#8B5A2B] block -mt-1">ЛАТВИЯ</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-x-8 text-sm font-medium">
+                <a href="#gallery" class="nav-link">Галерея</a>
+                <a href="#order" class="nav-link">Заказать</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+                <a href="#order" 
+                   class="px-5 py-2 bg-[#0A3D2E] text-white text-sm font-semibold rounded-2xl hover:bg-[#06291F]">
+                    Оформить заказ
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO (short & factual) -->
+    <header class="max-w-6xl mx-auto px-6 pt-12 pb-8 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold tracking-tighter leading-none mb-4">
+            Премиум изделия<br>из фанеры от производителя
+        </h1>
+        <p class="max-w-lg mx-auto text-xl text-[#0A3D2E]/80 mb-8">
+            Летние домики, сараи, заборы и мебель.<br>
+            Березовая фанера. Производство в Сигулде, Латвия.<br>
+            Честные цены. 5 лет гарантии.
+        </p>
+        <div class="flex justify-center gap-x-4">
+            <a href="#gallery" class="px-8 py-3.5 bg-white border border-[#8B5A2B] text-[#8B5A2B] font-semibold rounded-2xl hover:bg-[#8B5A2B] hover:text-white transition">
+                Смотреть галерею
+            </a>
+            <a href="#order" class="px-8 py-3.5 bg-[#0A3D2E] text-white font-semibold rounded-2xl hover:bg-[#06291F]">
+                Сразу оформить заказ
+            </a>
+        </div>
+        <div class="mt-6 text-sm text-[#0A3D2E]/60">Доставка по Латвии, Эстонии и Литве • 3–6 недель</div>
+    </header>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="max-w-6xl mx-auto px-6 pb-12">
+        <div class="flex items-end justify-between mb-6">
+            <h2 class="section-title">Галерея изделий</h2>
+            <span class="text-sm text-[#0A3D2E]/60">Нажмите «Добавить в заказ», чтобы сразу отправить в форму</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="product-grid">
+            <!-- Products populated by JS -->
+        </div>
+    </section>
+
+    <!-- ORDER FORM -->
+    <section id="order" class="bg-white border-y border-[#E8E0D5] py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="section-title mb-2 text-center">Оформить заказ</h2>
+            <p class="text-center text-[#0A3D2E]/70 mb-8">Выберите изделия из галереи выше или загрузите свои примеры. Мы свяжемся с вами в течение 2 часов.</p>
+
+            <div class="grid lg:grid-cols-5 gap-8">
+                
+                <!-- Selected Products -->
+                <div class="lg:col-span-2">
+                    <div class="bg-[#F8F5F0] rounded-3xl p-6">
+                        <h3 class="font-semibold mb-4 flex items-center gap-x-2">
+                            <i class="fa-solid fa-list-check"></i> 
+                            <span>Выбранные изделия</span>
+                        </h3>
+                        
+                        <div id="selected-products" class="space-y-3 min-h-[120px]">
+                            <div class="text-sm text-[#0A3D2E]/50 italic">Пока ничего не выбрано. Добавьте изделия из галереи выше.</div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t text-xs text-[#0A3D2E]/60">
+                            Итого (ориентировочно): <span id="total-price" class="font-semibold text-lg text-[#0A3D2E]">0 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Form -->
+                <div class="lg:col-span-3">
+                    <form id="order-form" class="space-y-5">
+                        
+                        <!-- File Upload -->
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Загрузите свои примеры или чертежи (фото, сканы, рисунки)</label>
+                            <div class="border-2 border-dashed border-[#8B5A2B]/40 rounded-2xl p-6 text-center hover:border-[#8B5A2B] transition">
+                                <input type="file" id="file-upload" multiple accept="image/*,.pdf,.dwg" class="hidden">
+                                <label for="file-upload" class="cursor-pointer">
+                                    <i class="fa-solid fa-cloud-upload-alt text-3xl text-[#8B5A2B] mb-2"></i>
+                                    <div class="font-medium">Нажмите или перетащите файлы сюда</div>
+                                    <div class="text-xs text-[#0A3D2E]/60 mt-1">JPG, PNG, PDF до 10 МБ</div>
+                                </label>
+                            </div>
+                            <div id="file-previews" class="flex flex-wrap gap-3 mt-3"></div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Ваше имя</label>
+                                <input type="text" id="name" required class="w-full border border-[#E8E0D5] rounded-2xl px-4 py-3 focus:outline-none focus:border-[#8B5A2B]">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-1.5">Телефон / WhatsApp</label>
+                                <input type="tel" id="phone" required class="w-full border border-[#E8E0D5] rounded-2xl px-4 py-3 focus:outline-none focus:border-[#8B5A2B]">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-1.5">Email</label>
+                            <input type="email" id="email" required class="w-full border border-[#E8E0D5] rounded-2xl px-4 py-3 focus:outline-none focus:border-[#8B5A2B]">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-1.5">Дополнительные пожелания или комментарий к заказу</label>
+                            <textarea id="message" rows="4" class="w-full border border-[#E8E0D5] rounded-3xl px-4 py-3 focus:outline-none focus:border-[#8B5A2B]" placeholder="Например: нужны окна, покраска в серый цвет, доставка в Ригу..."></textarea>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full py-4 bg-[#0A3D2E] hover:bg-[#06291F] text-white font-bold text-lg rounded-2xl flex items-center justify-center gap-x-2 transition">
+                            <span>Отправить заказ</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        
+                        <p class="text-center text-xs text-[#0A3D2E]/50">Мы свяжемся с вами в течение 2 часов. Обязательств пока нет.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FACTS / TRUST -->
+    <section class="max-w-6xl mx-auto px-6 py-12 text-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8">
+            <div>
+                <div class="text-3xl font-bold">5+</div>
+                <div class="text-sm text-[#0A3D2E]/70">лет производства</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold">480+</div>
+                <div class="text-sm text-[#0A3D2E]/70">готовых объектов</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold">5 лет</div>
+                <div class="text-sm text-[#0A3D2E]/70">гарантии на конструкцию</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold">100%</div>
+                <div class="text-sm text-[#0A3D2E]/70">латвийская березовая фанера</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="bg-white border-t py-12">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-x-12">
+            <div>
+                <h3 class="font-semibold text-xl mb-4">Контакты и производство</h3>
+                <div class="space-y-3 text-sm">
+                    <div><strong>Адрес:</strong> Meža iela 42, Сигулда, Латвия</div>
+                    <div><strong>Телефон:</strong> +371 20 345 678</div>
+                    <div><strong>Email:</strong> hello@plyora.lv</div>
+                    <div class="pt-2">Работаем по предварительной записи</div>
+                </div>
+            </div>
+            
+            <div class="mt-8 md:mt-0">
+                <div class="rounded-3xl overflow-hidden border">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2194.8!2d24.854!3d57.152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTfCsDA5JzA3LjIiTiAyNMKwNTEnMTQuNCJF!5e0!3m2!1sru!2slv!4v1700000000000" width="100%" height="220" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-8 text-xs text-[#0A3D2E]/50">
+        © 2026 Plyora • Производство в Латвии • Все права защищены
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-[100]">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center">
+            <i class="fa-solid fa-check-circle text-emerald-500 text-6xl mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-2">Спасибо за заказ!</h3>
+            <p class="text-[#0A3D2E]/70 mb-6">Мы получили вашу заявку. Наш менеджер свяжется с вами в течение 2 часов для уточнения деталей и расчёта точной стоимости.</p>
+            <button onclick="hideSuccessModal()" class="px-8 py-3 bg-[#0A3D2E] text-white rounded-2xl font-semibold">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind config
+        function initTailwind() {
+            // Already using CDN
+        }
+
+        // Products data (factual)
+        const products = [
+            {
+                id: 1,
+                name: "Летний домик Forest Haven",
+                desc: "Березовая фанера, большие окна, терраса. 12–25 м²",
+                price: 6890,
+                image: "images/plyora-hero.jpg"
+            },
+            {
+                id: 2,
+                name: "Садовый сарай Storage Pro",
+                desc: "Прочный, с полом и опциональным чердаком. 4–12 м²",
+                price: 2450,
+                image: "images/plyora-shed.jpg"
+            },
+            {
+                id: 3,
+                name: "Забор Privacy Wall",
+                desc: "Вертикальные ламели из фанеры. Цена за метр",
+                price: 92,
+                image: "https://picsum.photos/id/1016/600/400"
+            },
+            {
+                id: 4,
+                name: "Стол + скамьи Riga Table",
+                desc: "Прочная мебель для улицы на 6–10 человек",
+                price: 1290,
+                image: "images/plyora-table.jpg"
+            },
+            {
+                id: 5,
+                name: "Детский домик Adventure Nest",
+                desc: "Безопасный, с окошками и дверью. 6–10 м²",
+                price: 3800,
+                image: "https://picsum.photos/id/201/600/400"
+            },
+            {
+                id: 6,
+                name: "Пергола Garden Canopy",
+                desc: "Открытая конструкция для зоны отдыха",
+                price: 1750,
+                image: "https://picsum.photos/id/160/600/400"
+            }
+        ];
+
+        let selectedProducts = [];
+        let uploadedFiles = [];
+
+        // Render product gallery
+        function renderGallery() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = `product-card bg-white rounded-3xl overflow-hidden border border-[#E8E0D5]`;
+                card.innerHTML = `
+                    <div class="h-52 overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-semibold text-xl leading-tight">${product.name}</h3>
+                            <div class="text-right text-sm">
+                                <div class="font-bold">от ${product.price} €</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#0A3D2E]/70 mb-4">${product.desc}</p>
+                        
+                        <button onclick="addToOrder(${product.id})" 
+                                class="w-full py-2.5 text-sm font-semibold bg-[#0A3D2E] text-white rounded-2xl hover:bg-[#06291F]">
+                            Добавить в заказ
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Add product to order
+        function addToOrder(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Check if already added
+            if (selectedProducts.find(p => p.id === productId)) {
+                alert('Это изделие уже добавлено в заказ');
+                return;
+            }
+
+            selectedProducts.push({...product});
+            updateSelectedProductsUI();
+            
+            // Scroll to order form
+            document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Update selected products list
+        function updateSelectedProductsUI() {
+            const container = document.getElementById('selected-products');
+            const totalEl = document.getElementById('total-price');
+            
+            if (selectedProducts.length === 0) {
+                container.innerHTML = `<div class="text-sm text-[#0A3D2E]/50 italic">Пока ничего не выбрано. Добавьте изделия из галереи выше.</div>`;
+                totalEl.textContent = '0 €';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            selectedProducts.forEach((product, index) => {
+                total += product.price;
+                html += `
+                    <div class="order-item flex justify-between items-center p-3 rounded-2xl">
+                        <div>
+                            <div class="font-medium">${product.name}</div>
+                            <div class="text-xs text-[#0A3D2E]/60">от ${product.price} €</div>
+                        </div>
+                        <button onclick="removeFromOrder(${index})" class="text-red-500 hover:text-red-600 p-1">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            totalEl.textContent = `${total} €`;
+        }
+
+        function removeFromOrder(index) {
+            selectedProducts.splice(index, 1);
+            updateSelectedProductsUI();
+        }
+
+        // File upload handling
+        function initFileUpload() {
+            const fileInput = document.getElementById('file-upload');
+            const previewsContainer = document.getElementById('file-previews');
+
+            fileInput.addEventListener('change', function() {
+                previewsContainer.innerHTML = '';
+                uploadedFiles = Array.from(this.files);
+
+                uploadedFiles.forEach((file, index) => {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const div = document.createElement('div');
+                            div.className = 'relative';
+                            div.innerHTML = `
+                                <img src="${e.target.result}" class="file-preview w-20 h-20 border border-[#E8E0D5]">
+                                <button onclick="removeFile(${index}, this)" class="absolute -top-1 -right-1 bg-red-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">×</button>
+                            `;
+                            previewsContainer.appendChild(div);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        // Non-image file
+                        const div = document.createElement('div');
+                        div.className = 'px-3 py-1.5 bg-[#F8F5F0] rounded-xl text-xs flex items-center gap-x-2';
+                        div.innerHTML = `
+                            <i class="fa-solid fa-file"></i> 
+                            <span>${file.name}</span>
+                            <button onclick="removeFile(${index}, this)" class="ml-2 text-red-500">×</button>
+                        `;
+                        previewsContainer.appendChild(div);
+                    }
+                });
+            });
+        }
+
+        function removeFile(index, element) {
+            uploadedFiles.splice(index, 1);
+            element.parentElement.remove();
+        }
+
+        // Form submission
+        function initOrderForm() {
+            const form = document.getElementById('order-form');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (selectedProducts.length === 0 && uploadedFiles.length === 0) {
+                    alert('Пожалуйста, добавьте хотя бы одно изделие или загрузите файлы');
+                    return;
+                }
+
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                // Build order summary
+                let summary = `Заказ от ${name}\n`;
+                summary += `Тел: ${phone} | Email: ${email}\n\n`;
+                
+                if (selectedProducts.length > 0) {
+                    summary += "Выбранные изделия:\n";
+                    selectedProducts.forEach(p => {
+                        summary += `- ${p.name} (от ${p.price} €)\n`;
+                    });
+                }
+                
+                if (uploadedFiles.length > 0) {
+                    summary += `\nЗагружено файлов: ${uploadedFiles.length}\n`;
+                }
+                
+                if (message) summary += `\nКомментарий: ${message}`;
+
+                // Show success
+                showSuccessModal(summary);
+
+                // In real project you would send this data to backend or Formspree
+                console.log('%c[PLYORA] Order submitted (demo):', 'color:#8B5A2B', summary);
+            });
+        }
+
+        function showSuccessModal(summary) {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            
+            // Optional: clear form after success
+            setTimeout(() => {
+                document.getElementById('order-form').reset();
+                selectedProducts = [];
+                uploadedFiles = [];
+                document.getElementById('selected-products').innerHTML = `<div class="text-sm text-[#0A3D2E]/50 italic">Пока ничего не выбрано.</div>`;
+                document.getElementById('total-price').textContent = '0 €';
+                document.getElementById('file-previews').innerHTML = '';
+            }, 1500);
+        }
+
+        function hideSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+
+        // Initialize everything
+        function initializeSite() {
+            initTailwind();
+            renderGallery();
+            updateSelectedProductsUI();
+            initFileUpload();
+            initOrderForm();
+
+            // Bonus: keyboard hint
+            console.log('%c[Plyora] Короткая версия сайта готова. Добавляйте изделия из галереи.', 'color:#8B5A2B');
+        }
+
+        window.onload = initializeSite;
+    </script>
+</body>
+</html>
